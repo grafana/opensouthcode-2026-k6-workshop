@@ -1,0 +1,146 @@
+services:
+  alloy:
+    image: grafana/alloy:v1.14.2@sha256:eadfe35ea52b26cbec4d4d780fbcc31edb31108c1c9e537ca59557a5a102c712
+    container_name: alloy
+    labels:
+      - "service.type=instrumentation"
+    volumes:
+      - "./compose/config.alloy:/config.alloy:Z"
+    command:
+      - run
+      - /config.alloy
+      - --server.http.listen-addr=0.0.0.0:12345
+      - --stability.level=public-preview
+    ports:
+      - "12345:12345"
+      - "4317:4317" # OTLP gRPC
+      - "4318:4318" # OTLP HTTP
+    environment:
+      QUICKPIZZA_HOST: quickpizza:3333
+      METRICS_ENDPOINT: http://prometheus:9090/api/v1/write
+      TRACES_ENDPOINT: http://tempo:4317
+      LOGS_ENDPOINT: http://loki:3100/loki/api/v1/push
+      PROFILES_ENDPOINT: http://pyroscope:4040
+      DEPLOYMENT_ENVIRONMENT: development
+      # Default uses the same DB connection as the Quickpizza service. Use empty string to disable.
+      DB_O11Y_CONNECTION: "postgres://postgres:postgres@quickpizza-db:5432/quickpizza_db?sslmode=disable"
+      SERVICE_NAMESPACE: "quickpizza"
+      DB_SERVICE_NAME: "quickpizza-db"
+    depends_on:
+      - quickpizza
+      - prometheus
+      - tempo
+      - loki
+      - pyroscope
+  quickpizza:
+    image: ghcr.io/grafana/quickpizza-local:0.15.21@sha256:de839571c65ce9ac6e96290f44a7122869f31744d93bd235903ecb9429158d32
+    container_name: quickpizza
+    labels:
+      - "service.type=application"
+      - "service.namespace=quickpizza"
+    ports:
+      - "3333:3333"
+      - "3334:3334" # gRPC
+    environment:
+      QUICKPIZZA_OTLP_ENDPOINT: http://alloy:4318
+      QUICKPIZZA_TRUST_CLIENT_TRACEID: 1
+      QUICKPIZZA_ENABLE_ALL_SERVICES: 1 # 1 for monolithic mode
+      QUICKPIZZA_OTEL_SERVICE_INSTANCE_ID: "quickpizza"
+      QUICKPIZZA_OTEL_SERVICE_NAME: "quickpizza"
+      OTEL_RESOURCE_ATTRIBUTES: "deployment.environment=development,service.version=quickpizza-local"
+      # QUICKPIZZA_DELAY_RECOMMENDATIONS: 1000
+      # QUICKPIZZA_FAIL_RATE_RECOMMENDATIONS_API_PIZZA_POST: 5
+      QUICKPIZZA_DB: "postgres://postgres:postgres@quickpizza-db:5432/quickpizza_db?sslmode=disable"
+      # Enable logging. Possible values: error, warn, debug. Default: info
+      # QUICKPIZZA_LOG_LEVEL: debug
+    depends_on:
+      quickpizza-db:
+        condition: service_healthy
+
+  quickpizza-db:
+    image: postgres:18.1@sha256:1090bc3a8ccfb0b55f78a494d76f8d603434f7e4553543d6e807bc7bd6bbd17f
+    container_name: quickpizza-db
+    labels:
+      - "service.type=database"
+      - "service.namespace=quickpizza"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: quickpizza_db
+    command:
+      - "postgres"
+      - "-c"
+      - "shared_preload_libraries=pg_stat_statements"
+      - "-c"
+      - "pg_stat_statements.track=all"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+      - ./compose/postgres-init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  loki:
+    image: grafana/loki:3.4.3@sha256:5fe9fa99e9a747297cdf0239a5b25d192d8f668bd6505b09beef4dffcab5aac2
+    container_name: loki
+    labels:
+      - "service.type=instrumentation"
+    ports:
+      - "3100:3100"
+
+  prometheus:
+    image: prom/prometheus:v3.9.1@sha256:1f0f50f06acaceb0f5670d2c8a658a599affe7b0d8e78b898c1035653849a702
+    container_name: prometheus
+    labels:
+      - "service.type=instrumentation"
+    volumes:
+      - ./compose/prometheus.yaml:/etc/prometheus.yaml
+    command:
+      - --web.enable-remote-write-receiver
+      - --enable-feature=exemplar-storage
+      - --config.file=/etc/prometheus.yaml
+    ports:
+      - "9090:9090"
+
+  pyroscope:
+    image: grafana/pyroscope:1.16.0@sha256:58e49fa3443195c7b95f5c9821ce8920a8627f215c2ccdf955a9cd78c76a3468
+    container_name: pyroscope
+    labels:
+      - "service.type=instrumentation"
+    ports:
+      - "4040:4040"
+
+  tempo:
+    image: grafana/tempo:2.9.0@sha256:65a5789759435f1ef696f1953258b9bbdb18eb571d5ce711ff812d2e128288a4
+    container_name: tempo
+    labels:
+      - "service.type=instrumentation"
+    command: ["-config.file=/etc/tempo.yaml"]
+    volumes:
+      - ./compose/tempo.yaml:/etc/tempo.yaml
+    ports:
+      - "3200:3200"
+    depends_on:
+      - prometheus
+
+  grafana:
+    image: grafana/grafana:13.0.2@sha256:5dad0df181cb644a14e13617b913b261a54f7d4fd4510721dba420929f35bea2
+    container_name: grafana
+    labels:
+      - "service.type=instrumentation"
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_BASIC_ENABLED=false
+    volumes:
+      - ./compose/grafana:/etc/grafana/provisioning/
+
+
+volumes:
+  postgres_data:

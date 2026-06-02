@@ -1,0 +1,90 @@
+<svg width="800" height="260" viewBox="0 0 800 260" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#696969"/>
+    </marker>
+    <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#FF671D"/>
+    </marker>
+    <marker id="arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2970FF"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="260" fill="#f9f9fa" rx="8" stroke="rgba(23,23,23,0.12)" stroke-width="1"/>
+
+  <!-- ARROWS — drawn before nodes -->
+
+  <!-- k6 → PostgreSQL: SQL tests (accent, horizontal) -->
+  <line x1="136" y1="140" x2="256" y2="140" stroke="#FF671D" stroke-width="1.4" marker-end="url(#arrow-accent)"/>
+
+  <!-- k6 → Prometheus: remote write via top route (blue, rect path: up then right) -->
+  <line x1="76" y1="118" x2="76" y2="48" stroke="#2970FF" stroke-width="1.2"/>
+  <line x1="76" y1="48" x2="620" y2="48" stroke="#2970FF" stroke-width="1.2"/>
+  <line x1="620" y1="48" x2="620" y2="72" stroke="#2970FF" stroke-width="1.2" marker-end="url(#arrow-link)"/>
+
+  <!-- Alloy → PostgreSQL: scrape (muted, horizontal left then up) -->
+  <line x1="440" y1="178" x2="396" y2="178" stroke="#696969" stroke-width="1.2"/>
+  <line x1="396" y1="178" x2="396" y2="162" stroke="#696969" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <!-- Alloy → Prometheus: forward metrics (muted) -->
+  <line x1="576" y1="178" x2="660" y2="116" stroke="#696969" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <!-- Grafana → Prometheus: query (dashed, vertical up) -->
+  <line x1="668" y1="212" x2="668" y2="116" stroke="#696969" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+
+  <!-- NODES -->
+
+  <!-- k6 (focal — test runner) -->
+  <rect x="16" y="118" width="120" height="44" rx="6" fill="#f9f9fa"/>
+  <rect x="16" y="118" width="120" height="44" rx="6" fill="rgba(255,103,29,0.08)" stroke="#FF671D" stroke-width="1"/>
+  <text x="76" y="144" fill="#171717" font-size="12" font-weight="600" font-family="Inter, sans-serif" text-anchor="middle">k6</text>
+  <text x="76" y="157" fill="#696969" font-size="9" font-family="Roboto Mono, monospace" text-anchor="middle">test runner</text>
+
+  <!-- PostgreSQL (focal — database under test) -->
+  <rect x="256" y="118" width="140" height="44" rx="6" fill="#f9f9fa"/>
+  <rect x="256" y="118" width="140" height="44" rx="6" fill="rgba(255,103,29,0.08)" stroke="#FF671D" stroke-width="1"/>
+  <text x="326" y="144" fill="#171717" font-size="12" font-weight="600" font-family="Inter, sans-serif" text-anchor="middle">PostgreSQL</text>
+  <text x="326" y="157" fill="#696969" font-size="9" font-family="Roboto Mono, monospace" text-anchor="middle">quickpizza-db</text>
+
+  <!-- Alloy (backend — collector) -->
+  <rect x="440" y="156" width="136" height="44" rx="6" fill="#f9f9fa"/>
+  <rect x="440" y="156" width="136" height="44" rx="6" fill="#ffffff" stroke="#171717" stroke-width="1"/>
+  <text x="508" y="182" fill="#171717" font-size="12" font-weight="600" font-family="Inter, sans-serif" text-anchor="middle">Alloy</text>
+  <text x="508" y="195" fill="#696969" font-size="9" font-family="Roboto Mono, monospace" text-anchor="middle">collector</text>
+
+  <!-- Prometheus (store) -->
+  <rect x="580" y="72" width="160" height="44" rx="6" fill="#f9f9fa"/>
+  <rect x="580" y="72" width="160" height="44" rx="6" fill="rgba(23,23,23,0.05)" stroke="#696969" stroke-width="1"/>
+  <text x="660" y="98" fill="#171717" font-size="12" font-weight="600" font-family="Inter, sans-serif" text-anchor="middle">Prometheus</text>
+  <text x="660" y="111" fill="#696969" font-size="9" font-family="Roboto Mono, monospace" text-anchor="middle">metrics :9090</text>
+
+  <!-- Grafana (backend — visualization) -->
+  <rect x="456" y="212" width="320" height="44" rx="6" fill="#f9f9fa"/>
+  <rect x="456" y="212" width="320" height="44" rx="6" fill="#ffffff" stroke="#171717" stroke-width="1"/>
+  <text x="616" y="238" fill="#171717" font-size="12" font-weight="600" font-family="Inter, sans-serif" text-anchor="middle">Grafana</text>
+  <text x="616" y="251" fill="#696969" font-size="9" font-family="Roboto Mono, monospace" text-anchor="middle">dashboards :3000</text>
+
+  <!-- ARROW LABELS — after nodes -->
+
+  <!-- SQL TESTS label -->
+  <rect x="164" y="128" width="60" height="12" rx="2" fill="#f9f9fa"/>
+  <text x="194" y="137" fill="#FF671D" font-size="8" font-family="Roboto Mono, monospace" text-anchor="middle" letter-spacing="0.06em">SQL TESTS</text>
+
+  <!-- REMOTE WRITE label (on top horizontal segment) -->
+  <rect x="316" y="36" width="84" height="12" rx="2" fill="#f9f9fa"/>
+  <text x="358" y="45" fill="#2970FF" font-size="8" font-family="Roboto Mono, monospace" text-anchor="middle" letter-spacing="0.06em">REMOTE WRITE</text>
+
+  <!-- SCRAPE label -->
+  <rect x="400" y="166" width="44" height="12" rx="2" fill="#f9f9fa"/>
+  <text x="422" y="175" fill="#696969" font-size="8" font-family="Roboto Mono, monospace" text-anchor="middle" letter-spacing="0.06em">SCRAPE</text>
+
+  <!-- FORWARD label -->
+  <rect x="568" y="152" width="52" height="12" rx="2" fill="#f9f9fa"/>
+  <text x="594" y="161" fill="#696969" font-size="8" font-family="Roboto Mono, monospace" text-anchor="middle" letter-spacing="0.06em">FORWARD</text>
+
+  <!-- QUERY label -->
+  <rect x="648" y="168" width="40" height="12" rx="2" fill="#f9f9fa"/>
+  <text x="668" y="177" fill="#696969" font-size="8" font-family="Roboto Mono, monospace" text-anchor="middle" letter-spacing="0.06em">QUERY</text>
+</svg>
