@@ -4,6 +4,8 @@
 
 - Introduction: 3m
 - [Lab setup](./1.lab-setup/): 10m
+- [First load test](./2.basic-load-test/): 15m
+- [Workload in request rate](./3.workload-in-rps/): 15m
 - Lab wrap-up
 
 ## Facilitators and in-room support staff

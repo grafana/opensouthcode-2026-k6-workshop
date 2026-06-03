@@ -1,17 +1,25 @@
-import { sleep } from 'k6';
 import http from "k6/http";
 
 const BASE_URL = __ENV.BASE_URL || "http://localhost:3333";
 
 export const options = {
-  stages: [
-    // starts at 0 and ramps up to 50 virtual users over 5 seconds
-    { duration: "5s", target: 50 },
-    // stays at 50 virtual users for 50 seconds
-    { duration: "50s", target: 50 },
-    // ramps down to 0 virtual users over 5 seconds
-    { duration: "5s", target: 0 },
-  ],
+  scenarios: {
+    default: {
+      executor: "constant-arrival-rate",
+
+      // string: How long the test lasts
+      duration: "10s",
+
+      // integer: Number of iterations to start during each `timeUnit` period
+      rate: 30,
+
+      //string: Default "1s". Period of time to apply the `rate` value.
+      timeUnit: "1s",
+
+      //integer: Number of VUs to pre-allocate before test start to preserve runtime resources.
+      preAllocatedVUs: 50,
+    },
+  },
 };
 
 export default function () {
@@ -32,6 +40,4 @@ export default function () {
   console.log(
     `${res.json().pizza.name} (${res.json().pizza.ingredients.length} ingredients)`,
   );
-  // pause for 1 second between iterations to simulate a more realistic user behavior
-  sleep(1);
 }
