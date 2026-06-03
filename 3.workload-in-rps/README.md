@@ -4,11 +4,11 @@ Requests per second (RPS), also known as request rate, is the standard metric us
 
 We've observed that our QuickPizza service handles around **30 requests per second** during normal operation.
 
-Let's use that value to configure `k6-test.js` to generate a workload of **30 requests per second**.
+Instead of modeling the workload in terms of users, let's use the observed traffic value to generate a workload of **30 requests per second**.
 
 For simplicity, we'll:
 - Set a shorter test duration of `10s`.
-- Use the [`constant-arrival-rate` executor](https://grafana.com/docs/k6/latest/using-k6/scenarios/executors/constant-arrival-rate/) to generate a constant request rate, without ramping.
+- Use the [`constant-arrival-rate` executor](https://grafana.com/docs/k6/latest/using-k6/scenarios/executors/constant-arrival-rate/) to generate a constant (no ramping) iteration rate.
 
 ```js
 export const options = {
@@ -62,4 +62,4 @@ After fixing it, run the test again.
 
 ---
 
-[← Previous exercise](../2.basic-load-test/) · [Workshop homepage](https://github.com/grafana/opensouthcode-2026-k6-workshop) · [Next exercise →](../4.%intro-to-synthetic-monitoring/)
+[← Previous exercise](../2.basic-load-test/) · [Workshop homepage](https://github.com/grafana/opensouthcode-2026-k6-workshop) · [Next exercise →](../4.assertions/)

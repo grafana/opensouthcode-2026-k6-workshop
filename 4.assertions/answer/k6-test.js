@@ -1,8 +1,12 @@
+import { check } from "k6";
 import http from "k6/http";
 
 const BASE_URL = __ENV.BASE_URL || "http://localhost:3333";
 
 export const options = {
+  thresholds: {
+    http_req_duration: ["p(99)<1000"],
+  },
   scenarios: {
     default: {
       executor: "constant-arrival-rate",
@@ -37,7 +41,12 @@ export default function () {
       Authorization: "token abcdef0123456789",
     },
   });
-  console.log(
-    `${res.json().pizza.name} (${res.json().pizza.ingredients.length} ingredients)`,
-  );
+
+  check(res, { "status is 200": (res) => res.status === 200 });
+
+  if (res.status === 200) {
+    console.log(
+      `${res.json().pizza.name} (${res.json().pizza.ingredients.length} ingredients)`,
+    );
+  }
 }

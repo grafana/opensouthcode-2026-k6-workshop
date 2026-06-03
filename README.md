@@ -6,7 +6,11 @@
 - [Lab setup](./1.lab-setup/): 10m
 - [First load test](./2.basic-load-test/): 15m
 - [Workload in request rate](./3.workload-in-rps/): 15m
-- Lab wrap-up
+- [Assertions](./4.assertions/): 15m
+- [Test recorders](./5.test-recorders/): 15m
+- Infrastructure testing: 15m
+- k6 Ecosystem Overview: 15m
+- Lab wrap-up and QA
 
 ## Facilitators and in-room support staff
 - [Pepe Cano](https://www.linkedin.com/in/ppcano/)
@@ -16,8 +20,9 @@
 
 By the end of this workshop, you will learn the fundamentals of load testing and have built:
 - API performance tests with meaningful thresholds and assertions
-- A complete k6 test flow starting from k6 Studio and evolving into a full script
 - Grafana dashboards to visualize test results and understand how the system behaves under a heavy load.
+- Use k6 Studio to generate k6 scripts
+- Use k6 Studio to generate k6 scripts
 
 ## Pre-requisites
 
