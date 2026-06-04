@@ -121,7 +121,7 @@ services:
       - prometheus
 
   grafana:
-    image: grafana/grafana:${GRAFANA_VERSION:-13.0.1}
+    image: grafana/grafana:13.0.2@sha256:5dad0df181cb644a14e13617b913b261a54f7d4fd4510721dba420929f35bea2
     container_name: grafana
     labels:
       - "service.type=instrumentation"

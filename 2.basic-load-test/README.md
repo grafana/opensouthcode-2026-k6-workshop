@@ -21,7 +21,7 @@ This configuration generates a flat traffic pattern: the test starts with 50 vir
 
 In practice, traffic usually ramps up and down over time. You can model this behavior using ramping stages.
 
-![QuickPizza screenshot](./images/ramping-load-test.png)
+<img src="./images/ramping-load-test.png" alt="Workload with ramping pattern" width="400" />
 
 A common recommendation is to spend between between 5% to 10% of the total duration to ramp up and ramp down the load.
 

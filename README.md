@@ -13,16 +13,16 @@
 - Lab wrap-up and QA
 
 ## Facilitators and in-room support staff
-- [Pepe Cano](https://www.linkedin.com/in/ppcano/)
 - [Imma Valls](https://www.linkedin.com/in/imma-valls/)
+- [Pepe Cano](https://www.linkedin.com/in/ppcano/)
 
 ## What you will learn
 
 By the end of this workshop, you will learn the fundamentals of load testing and have built:
 - API performance tests with meaningful thresholds and assertions
 - Grafana dashboards to visualize test results and understand how the system behaves under a heavy load.
-- Use k6 Studio to generate k6 scripts
-- Use k6 Studio to generate k6 scripts
+- k6 tests automatically generated using k6 Studio
+- Load tests for SQL databases
 
 ## Pre-requisites
 
