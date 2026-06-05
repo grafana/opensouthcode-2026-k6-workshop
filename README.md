@@ -10,7 +10,7 @@
 - [Test recorders](./5.test-recorders/): 15m
 - [Infrastructure testing](./6.infrastructure-testing/): 15m
 - k6 Ecosystem Overview: 15m
-- Lab wrap-up and QA
+- Lab wrap-up / Closing OpenSouthCode 2026
 
 ## Facilitators and in-room support staff
 - [Imma Valls](https://www.linkedin.com/in/imma-valls/)
