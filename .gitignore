@@ -2,12 +2,6 @@
 node_modules/
 npm-debug.log*
 
-# k6 outputs
-results/
-*.json
-*.csv
-*.html
-
 # OS
 .DS_Store
 Thumbs.db
