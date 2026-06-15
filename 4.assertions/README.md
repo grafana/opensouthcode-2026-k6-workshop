@@ -76,7 +76,12 @@ http_req_duration..............: avg=1.13s min=1s med=1.1s max=1.65s p(90)=1.26s
 ERRO[0011] thresholds on metrics 'http_req_duration' have been crossed 
 ```
 
-Unlike checks, thresholds affect the test result. When a threshold is crossed, k6 returns a non-zero exit code, allowing you to verify performance criteria with load tests in your CI/CD pipelines.
+📌 Unlike checks, thresholds affect the test result. When a threshold is crossed, k6 returns a non-zero exit code, allowing you to verify performance criteria with load tests in your CI/CD pipelines.
+
+
+If you have extra time, update the latency threshold until the test passes.
+
+
 
 ## Related Resources
 
