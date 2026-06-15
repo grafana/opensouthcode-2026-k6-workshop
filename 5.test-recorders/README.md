@@ -112,4 +112,4 @@ Correlate the `CSRF` token using the **Test rules** option:
 
 ---
 
-[← Previous exercise](../4.assertions//) · [Workshop homepage](https://github.com/grafana/opensouthcode-2026-k6-workshop) · [Next exercise →](../6.infrastructure-testing/)
+[← Previous exercise](../4.assertions/) · [Workshop homepage](https://github.com/grafana/opensouthcode-2026-k6-workshop) · [Next exercise →](../6.infrastructure-testing/)
