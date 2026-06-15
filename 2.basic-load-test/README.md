@@ -27,7 +27,7 @@ A common recommendation is to spend between between 5% to 10% of the total durat
 
 Now, update the previous `k6-test.js` test:
 
-1. Use the [`stages` k6 option](/docs/k6/latest/using-k6/k6-options/reference/#stages) to configure a ramping load pattern.
+1. Use the [`stages` k6 option](https://grafana.com/docs/k6/latest/using-k6/k6-options/reference/#stages) to configure a ramping load pattern.
 
 2. In the test scenario, add a 1-second pause after ordering a pizza using [`sleep(1)`](https://grafana.com/docs/k6/latest/javascript-api/k6/sleep/). 
 

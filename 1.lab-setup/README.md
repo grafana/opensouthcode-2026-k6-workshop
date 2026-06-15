@@ -21,9 +21,29 @@ cd opensouthcode-2026-k6-workshop
 docker compose up -d
 ```
 
+The output should be similar to:
+
+```bash
+[+] up 10/10
+✔ Network opensouthcode-2026-k6-workshop_default Created 0.0s 
+✔ Volume opensouthcode-2026-k6-workshop_postgres_data Created 0.0s 
+✔ Container pyroscope Started 0.3s 
+✔ Container grafana Started 0.3s 
+✔ Container loki Started 0.3s 
+✔ Container prometheus Started 0.3s 
+✔ Container quickpizza-db Healthy 10.8s 
+✔ Container tempo Started 0.3s 
+✔ Container quickpizza Started 10.8s 
+✔ Container alloy Started 10.8s
+```
+
+> To reset the environment, run `docker compose down -v` to stop the containers and remove attached volumes.
+
 Quickpizza should now be running at [localhost:3333](http://localhost:3333/).
 
-Install [k6 OSS](https://grafana.com/docs/k6/latest/set-up/install-k6/) on your machine.
+Install [k6 OSS](https://grafana.com/docs/k6/latest/set-up/install-k6/) on your machine. 
+
+We recommend installing it using your operating system's package manager. After installation, you might need to open a new terminal session so it picks up the updated `PATH` and recognizes the `k6` CLI.
 
 Next, run a basic k6 test to verify your installation and test environment:
 

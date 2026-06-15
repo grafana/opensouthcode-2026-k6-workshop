@@ -52,7 +52,7 @@ In this exercise, you'll implement request correlation for the `CSRF_TOKEN` used
 
 In k6 Studio, you can implement correlations by using:
 
-- **Grafana Assistant Autocorrelate** (requires a free Grafana Cloud account) 
+- **Grafana Assistant Autocorrelate**: Requires a free Grafana Cloud account (not used in this workshop). 
 - **Test rules** configured manually in the UI. These rules are available only in k6 Studio and exist separately from the generated k6 script.
 
 	<img src="./images/k6-studio-correlation.png" alt="Correlation in k6 Studio" width="600" />
@@ -95,6 +95,9 @@ Correlate the `CSRF` token using the **Test rules** option:
 	- **Type**: `Begin-End`
 	- **Begin**:  `csrf_token=`
 	- **End**:  `;`
+
+		<img src="./images/k6-studio-rule-correlation.png" alt="Test rule correlation in k6 Studio" width="450" />
+
 
 3. Verify how the generated script changes.
 

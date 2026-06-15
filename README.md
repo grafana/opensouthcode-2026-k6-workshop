@@ -32,6 +32,6 @@ In order to participate in the lab, you must have a laptop with Wi-Fi/Internet c
 
 The following also needs to be installed:
 - An IDE installed to write k6 scripts
-- Git and [Docker Compose](https://docs.docker.com/get-started/get-docker/) to run the demo app
+- Git and [Docker Desktop](https://docs.docker.com/get-started/get-docker/) to run the demo app
 - [k6 OSS](https://grafana.com/docs/k6/latest/set-up/install-k6/) binary installed
 - [k6 Studio](https://grafana.com/docs/k6-studio/set-up/install/) installed
