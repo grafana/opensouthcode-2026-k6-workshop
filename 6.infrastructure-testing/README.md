@@ -2,8 +2,13 @@
 
 In this exercise, you'll learn how to:
 - Write a load test against a database
-- Send k6 results to Prometheus and visualize performance in Grafana
+- Send k6 results and PosgreSQL statistics to Prometheus and visualize performance in Grafana
 
+The following architecture diagram shows the data flows used in this exercise within the Docker Compose setup.
+
+![Architecture diagram of this exercise](./images/exercise-diagram-architecture.svg)
+
+-----
 
 Open [`sql-db-k6-test.js`](./sql-db-k6-test.js) and review how it uses the `k6/x/sql` extension to interact with PostgreSQL.
 
@@ -22,11 +27,11 @@ Run the test with the `--out experimental-prometheus-rw` option to send k6 resul
 k6 run --out experimental-prometheus-rw 6.infrastructure-testing/sql-db-k6-test.js
 ```
 
-The following architecture diagram shows the data flows used in this exercise within the Docker Compose setup.
+This demo includes a standard **[k6 Prometheus Dashboard](http://localhost:3000/d/k6-prometheus/k6-prometheus)**, which displays primarily  HTTP request data.  
 
-![Architecture diagram of this exercise](./images/exercise-diagram-architecture.svg)
+In Grafana, use **Explore** or **Drilldown Metrics** to discover PostgreSQL and [k6 built-in metrics](https://grafana.com/docs/k6/latest/using-k6/metrics/reference/).
 
-This demo includes a standard **k6 Prometheus Dashboard**, which displays primarily  HTTP request data. 
+<img src="./images/explore-k6-metrics.png" alt="Grafana Explore querying db and k6 metrics" width="600" />
 
 Because this test generates database traffic instead of HTTP traffic, we asked Grafana Assistant to create a custom dashboard:
 
