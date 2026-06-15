@@ -21,7 +21,7 @@ export const options = {
       // string: How long the test lasts
       duration: ,
 
-      // integer: Number of iterations to start during each `timeUnit` period
+      // integer: Iteration rate, the number of iterations to start during each `timeUnit` period
       rate: ,
 
       //string: Default "1s". Period of time to apply the `rate` value.
@@ -43,6 +43,11 @@ k6 run --out web-dashboard k6-test.js
 You can verify the generated workload in the terminal output:
 
 ```bash
+running (10.2s), 000/50 VUs, 300 complete and 0 interrupted iterations
+default ✓ [======================================] 000/50 VUs  10s  30.00 iters/s
+
+...
+
 # number of HTTP requests and HTTP request per second
 http_reqs......................: 301    29.389678/s
 
@@ -50,7 +55,9 @@ http_reqs......................: 301    29.389678/s
 iterations.....................: 301    29.389678/s
 ```
 
-⚠️ Does `http_reqs` report a significantly different value than `iterations`?
+On the **default ✓** row, `30.00 iters/s` indicates the iteration rate configured with the `constant-arrival-rate` executor.
+
+⚠️ Do `http_reqs` and `iterations` report significantly lower rates than the configured `30 iters/s`?
 
 🔍 If so, review the test scenario and find what could cause requests to execute at a slower pace than iterations.
 

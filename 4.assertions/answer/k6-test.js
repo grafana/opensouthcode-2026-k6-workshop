@@ -14,7 +14,7 @@ export const options = {
       // string: How long the test lasts
       duration: "10s",
 
-      // integer: Number of iterations to start during each `timeUnit` period
+      // integer: Iteration rate, the number of iterations to start during each `timeUnit` period
       rate: 30,
 
       //string: Default "1s". Period of time to apply the `rate` value.
