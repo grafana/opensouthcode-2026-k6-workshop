@@ -59,7 +59,7 @@ On the **default ✓** row, `30.00 iters/s` indicates the iteration rate configu
 
 ⚠️ Do `http_reqs` and `iterations` report significantly lower rates than the configured `30 iters/s`?
 
-🔍 If so, review the test scenario and find what could cause requests to execute at a slower pace than iterations.
+🔍 If so, review the test scenario and find what could cause requests to execute at a slower pace.
 
 After fixing it, run the test again.
 
