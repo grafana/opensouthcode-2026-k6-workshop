@@ -19,7 +19,7 @@ export const options = {
 
 This configuration generates a flat traffic pattern: the test starts with 50 virtual users and ends with 50 virtual users.
 
-In practice, traffic usually ramps up and down over time. You can model this behavior using ramping stages.
+In practice, traffic usually ramps up over time. You can model this behavior using ramping stages.
 
 <img src="./images/ramping-load-test.png" alt="Workload with ramping pattern" width="400" />
 
@@ -27,7 +27,7 @@ A common recommendation is to spend between between 5% to 10% of the total durat
 
 Now, update the previous `k6-test.js` test:
 
-1. Use the [`stages` k6 option](https://grafana.com/docs/k6/latest/using-k6/k6-options/reference/#stages) to configure a ramping load pattern.
+1. Use the [`stages` k6 option](https://grafana.com/docs/k6/latest/using-k6/k6-options/reference/#stages) to configure a ramping load pattern, with a total duration of `1m`.
 
 2. In the test scenario, add a 1-second pause after ordering a pizza using [`sleep(1)`](https://grafana.com/docs/k6/latest/javascript-api/k6/sleep/). 
 

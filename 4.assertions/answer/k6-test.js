@@ -5,7 +5,7 @@ const BASE_URL = __ENV.BASE_URL || "http://localhost:3333";
 
 export const options = {
   thresholds: {
-    http_req_duration: ["p(99)<1000"],
+    http_req_duration: ["p(95)<1000"],
   },
   scenarios: {
     default: {

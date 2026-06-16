@@ -57,12 +57,12 @@ Verify the output in the terminal:
 default ✓ [======================================] 00/50 VUs  10s  30.00 iters/s
 ```
 
-Now, add a [k6 threshold](https://grafana.com/docs/k6/latest/using-k6/thresholds/) to verify that at least 99% of responses complete in under 1 second. 
+Now, add a [k6 threshold](https://grafana.com/docs/k6/latest/using-k6/thresholds/) to verify that at least 95% of responses complete in under 1 second. 
 
 The [`http_req_duration`](https://grafana.com/docs/k6/latest/using-k6/metrics/reference/#http) reports the total server request duration, so the threshold should be like:
 
 ```js
-http_req_duration: ['p(99)<1000'], 
+http_req_duration: ['p(95)<1000'], 
 ```
 
 Configure the threshold and run the test again. 
