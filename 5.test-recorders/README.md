@@ -101,6 +101,12 @@ Correlate the `CSRF` token using the **Test rules** option:
 
 3. Verify how the generated script changes.
 
+4. Now it's your turn. Create another correlation rule to capture the `token` returned by the `/api/users/token/login?set_cookie=true` request.
+	
+	The variable `correlation_vars["correlation_1"]` should be assigned in the script and the requests table should look like this:
+
+	<img src="./images/k6-studio-token-correlation.png" alt="Token correlation in k6 Studio" width="450" />
+
 
 ## Related Resources
 
