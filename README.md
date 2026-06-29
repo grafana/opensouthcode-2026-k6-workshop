@@ -1,5 +1,7 @@
 # Load testing workshop with k6 OSS - OpenSouthCode 2026
 
+[Workshop slide deck](https://docs.google.com/presentation/d/1Tng6Fm3YWsQiog8vIgcwaoMcI4BXf9s1dynWrl__6PM/edit?usp=sharing)
+
 ## Hands-on lab agenda
 
 - Introduction: 5m
