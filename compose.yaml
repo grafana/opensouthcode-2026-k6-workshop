@@ -48,8 +48,8 @@ services:
       QUICKPIZZA_OTEL_SERVICE_INSTANCE_ID: "quickpizza"
       QUICKPIZZA_OTEL_SERVICE_NAME: "quickpizza"
       OTEL_RESOURCE_ATTRIBUTES: "deployment.environment=development,service.version=quickpizza-local"
-      QUICKPIZZA_DELAY_RECOMMENDATIONS: "1s"
-      QUICKPIZZA_FAIL_RATE_RECOMMENDATIONS_API_PIZZA_POST: 5
+      # QUICKPIZZA_DELAY_RECOMMENDATIONS: "1s"
+      # QUICKPIZZA_FAIL_RATE_RECOMMENDATIONS_API_PIZZA_POST: 5
       QUICKPIZZA_DB: "postgres://postgres:postgres@quickpizza-db:5432/quickpizza_db?sslmode=disable"
       # Enable logging. Possible values: error, warn, debug. Default: info
       # QUICKPIZZA_LOG_LEVEL: debug
