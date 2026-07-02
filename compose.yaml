@@ -141,6 +141,20 @@ services:
     volumes:
       - ./compose/grafana:/etc/grafana/provisioning/
 
+  k6:
+    image: grafana/k6:2.1.0
+    container_name: k6
+    entrypoint: ["tail", "-f", "/dev/null"]
+    labels:
+      - "service.type=load-generator"
+    environment:
+      BASE_URL: http://quickpizza:3333
+    volumes:
+      - ".:/scripts:Z"
+    working_dir: /scripts
+    depends_on:
+      - quickpizza
+
 
 volumes:
   postgres_data:
