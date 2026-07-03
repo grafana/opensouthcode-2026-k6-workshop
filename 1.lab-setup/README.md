@@ -52,6 +52,17 @@ k6 run k6-test.js
 ```
 
 <details>
+<summary>Alternative: run k6 from Docker</summary>
+
+`docker compose up -d` also starts a `k6` container alongside the rest of the stack, so you don't need to install the k6 CLI locally. Run tests inside it with:
+
+```bash
+docker compose exec k6 k6 run k6-test.js
+```
+
+</details>
+
+<details>
 <summary>Alternative: run the test against a remote testing environment</summary>
 
 ```bash
