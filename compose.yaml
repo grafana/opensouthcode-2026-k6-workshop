@@ -142,7 +142,7 @@ services:
       - ./compose/grafana:/etc/grafana/provisioning/
 
   k6:
-    image: grafana/k6:2.1.0
+    image: grafana/k6:2.2.0
     container_name: k6
     entrypoint: ["tail", "-f", "/dev/null"]
     labels:
