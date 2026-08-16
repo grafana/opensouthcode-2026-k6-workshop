@@ -115,7 +115,7 @@ services:
       - "4040:4040"
 
   tempo:
-    image: grafana/tempo:2.9.0
+    image: grafana/tempo:2.10.8
     container_name: tempo
     labels:
       - "service.type=instrumentation"
