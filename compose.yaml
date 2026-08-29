@@ -1,6 +1,6 @@
 services:
   alloy:
-    image: grafana/alloy:v1.16.2
+    image: grafana/alloy:v1.19.2
     container_name: alloy
     labels:
       - "service.type=instrumentation"
