@@ -19,7 +19,7 @@
 
 ## Facilitators and in-room support staff
 - [Imma Valls](https://www.linkedin.com/in/imma-valls/)
-- [Tom Donahue](https://www.linkedin.com/in/tomint/)
+- [Tom Donohue](https://www.linkedin.com/in/tomint/)
 
 _**Need help?** Raise your hand and we'll come help._
 
