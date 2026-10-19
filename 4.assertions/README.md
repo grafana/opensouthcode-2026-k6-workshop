@@ -88,6 +88,7 @@ If you have extra time, update the latency threshold until the test passes.
 - [k6 Documentation: Checks](https://grafana.com/docs/k6/latest/using-k6/checks/)
 - [k6 Documentation: Thresholds](https://grafana.com/docs/k6/latest/using-k6/thresholds/)
 - [k6 Documentation: Assertions (Public Preview)](https://grafana.com/docs/k6/latest/using-k6/assertions/)
+- [Performance testing with Grafana k6 and GitHub Actions](https://grafana.com/blog/performance-testing-with-grafana-k6-and-github-actions/): run your thresholds in a CI/CD pipeline
 
 ---
 
