@@ -1,8 +1,8 @@
 # Introduction to k6 Studio
 
-_**Need help?** Raise your hand and we'll come help._
-
 In this exercise, you'll use k6 Studio to record the QuickPizza login flow and turn it into a runnable k6 script.
+
+Before you start, [install k6 Studio](https://grafana.com/docs/k6-studio/set-up/install/).
 
 **Troubleshooting**
 
