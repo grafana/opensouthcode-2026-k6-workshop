@@ -1,0 +1,15 @@
+apiVersion: k6.io/v1alpha1
+kind: TestRun
+metadata:
+  name: quickpizza-test
+spec:
+  parallelism: 2
+  script:
+    configMap:
+      name: quickpizza-test
+      file: k6-test.js
+  separate: false
+  runner:
+    env:
+      - name: BASE_URL
+        value: http://quickpizza:3333
