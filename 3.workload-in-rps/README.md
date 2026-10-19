@@ -71,4 +71,4 @@ After fixing it, run the test again.
 
 ---
 
-[← Previous exercise](../2.basic-load-test/) · [Workshop homepage](https://github.com/grafana/opensouthcode-2026-k6-workshop) · [Next exercise →](../4.assertions/)
+[← Previous exercise](../2.basic-load-test/) · [Workshop homepage](https://github.com/immavalls/cnd-norway-2026-k6-workshop) · [Next exercise →](../4.assertions/)

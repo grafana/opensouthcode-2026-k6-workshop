@@ -1,22 +1,26 @@
-# Load testing workshop with k6 OSS - OpenSouthCode 2026
+# Load testing workshop with k6 OSS - Cloud Native Days Norway 2026
 
-[Workshop slide deck](https://docs.google.com/presentation/d/1Tng6Fm3YWsQiog8vIgcwaoMcI4BXf9s1dynWrl__6PM/edit?usp=sharing)
+[Workshop slide deck](https://speakerdeck.com/immavalls/shift-left-with-reliability-testing-a-hands-on-introduction-to-k6)
 
-## Hands-on lab agenda
+## Hands-on lab flow
 
-- Introduction: 5m
-- [Lab setup](./1.lab-setup/): 10m
-- [First load test](./2.basic-load-test/): 15m
-- [Workload in request rate](./3.workload-in-rps/): 15m
-- [Assertions](./4.assertions/): 15m
-- [Test recorders](./5.test-recorders/): 20m
-- [Infrastructure testing](./6.infrastructure-testing/): 15m
-- k6 Ecosystem Overview: 15m
-- Lab wrap-up / Closing OpenSouthCode 2026
+1. Introduction
+2. [Lab setup](./1.lab-setup/)
+3. [First load test](./2.basic-load-test/)
+4. [Workload in request rate](./3.workload-in-rps/)
+5. [Assertions](./4.assertions/)
+6. [Infrastructure testing](./5.infrastructure-testing/)
+7. [Distributed load testing with the k6 Operator](./6.operator/)
+8. k6 Ecosystem Overview
+9. Lab wrap-up / Closing
+
+## Additional exercises (take-away)
+
+- [Test recorders with k6 Studio](./additional/test-recorders/): a home exercise to try after the workshop
 
 ## Facilitators and in-room support staff
 - [Imma Valls](https://www.linkedin.com/in/imma-valls/)
-- [Pepe Cano](https://www.linkedin.com/in/ppcano/)
+- [Tom Donahue](https://www.linkedin.com/in/tomint/)
 
 _**Need help?** Raise your hand and we'll come help._
 
@@ -25,8 +29,8 @@ _**Need help?** Raise your hand and we'll come help._
 By the end of this workshop, you will learn the fundamentals of load testing and have built:
 - API performance tests with meaningful thresholds and assertions
 - Grafana dashboards to visualize test results and understand how the system behaves under a heavy load.
-- k6 tests automatically generated using k6 Studio
 - Load tests for SQL databases
+- Distributed load tests running on Kubernetes with the k6 Operator
 
 ## Pre-requisites
 
@@ -36,4 +40,4 @@ The following also needs to be installed:
 - An IDE installed to write k6 scripts
 - Git and [Docker Desktop](https://docs.docker.com/get-started/get-docker/) to run the demo app
 - [k6 OSS](https://grafana.com/docs/k6/latest/set-up/install-k6/) binary installed
-- [k6 Studio](https://grafana.com/docs/k6-studio/set-up/install/) installed
+- [kind](https://kind.sigs.k8s.io/) and [kubectl](https://kubernetes.io/docs/tasks/tools/) for the k6 Operator lab

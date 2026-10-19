@@ -24,7 +24,7 @@ The `teardown()` function runs after the test completes and returns the database
 Run the test with the `--out experimental-prometheus-rw` option to send k6 results to Prometheus.
 
 ```bash
-k6 run --out experimental-prometheus-rw 6.infrastructure-testing/sql-db-k6-test.js
+k6 run --out experimental-prometheus-rw 5.infrastructure-testing/sql-db-k6-test.js
 ```
 
 This demo includes a standard **[k6 Prometheus Dashboard](http://localhost:3000/d/k6-prometheus/k6-prometheus)**, which displays primarily  HTTP request data.  
@@ -70,4 +70,4 @@ Finally, edit any panel to explore the underlying k6 and `pg_stat_statements` me
 
 ---
 
-[← Previous exercise](../5.test-recorders/) · [Workshop homepage](https://github.com/grafana/opensouthcode-2026-k6-workshop)
+[← Previous exercise](../4.assertions/) · [Workshop homepage](https://github.com/immavalls/cnd-norway-2026-k6-workshop) · [Next exercise →](../6.operator/)

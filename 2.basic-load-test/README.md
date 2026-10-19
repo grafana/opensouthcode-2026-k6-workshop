@@ -55,4 +55,4 @@ Finally, explore these common performance metrics:
 
 ---
 
-[← Previous exercise](../1.lab-setup/) · [Workshop homepage](https://github.com/grafana/opensouthcode-2026-k6-workshop) · [Next exercise →](../3.workload-in-rps/)
+[← Previous exercise](../1.lab-setup/) · [Workshop homepage](https://github.com/immavalls/cnd-norway-2026-k6-workshop) · [Next exercise →](../3.workload-in-rps/)
