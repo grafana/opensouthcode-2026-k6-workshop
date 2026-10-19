@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quickpizza
+  labels:
+    app: quickpizza
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: quickpizza
+  template:
+    metadata:
+      labels:
+        app: quickpizza
+    spec:
+      containers:
+        - name: quickpizza
+          image: ghcr.io/grafana/quickpizza-local:0.15.27
+          env:
+            - name: QUICKPIZZA_ENABLE_ALL_SERVICES
+              value: "1"
+          ports:
+            - name: http
+              containerPort: 3333
+          readinessProbe:
+            tcpSocket:
+              port: http
+            initialDelaySeconds: 2
+            periodSeconds: 2
+          resources:
+            requests:
+              cpu: 25m
+              memory: 32Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: quickpizza
+  labels:
+    app: quickpizza
+spec:
+  type: ClusterIP
+  selector:
+    app: quickpizza
+  ports:
+    - name: http
+      port: 3333
+      targetPort: http
