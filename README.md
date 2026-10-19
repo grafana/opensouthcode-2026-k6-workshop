@@ -9,10 +9,14 @@
 - [First load test](./2.basic-load-test/): 15m
 - [Workload in request rate](./3.workload-in-rps/): 15m
 - [Assertions](./4.assertions/): 15m
-- [Test recorders](./5.test-recorders/): 20m
-- [Infrastructure testing](./6.infrastructure-testing/): 15m
+- [Infrastructure testing](./5.infrastructure-testing/): 15m
+- [Distributed load testing with the k6 Operator](./6.operator/)
 - k6 Ecosystem Overview: 15m
 - Lab wrap-up / Closing OpenSouthCode 2026
+
+## Additional exercises (take-away)
+
+- [Test recorders with k6 Studio](./additional/test-recorders/)
 
 ## Facilitators and in-room support staff
 - [Imma Valls](https://www.linkedin.com/in/imma-valls/)

@@ -44,7 +44,7 @@ The bundle installs the k6 Custom Resource Definitions, the operator controller,
 Deploy QuickPizza and wait for its readiness probe to pass:
 
 ```bash
-kubectl apply -f 7.operator/quickpizza.yaml
+kubectl apply -f 6.operator/quickpizza.yaml
 kubectl rollout status deployment/quickpizza --timeout=120s
 kubectl get deployment,service quickpizza
 ```
@@ -57,7 +57,7 @@ A ConfigMap makes the local test script available inside the runner Pods. Create
 
 ```bash
 kubectl create configmap quickpizza-test \
-  --from-file=k6-test.js=7.operator/k6-test.js
+  --from-file=k6-test.js=6.operator/k6-test.js
 ```
 
 Review [`testrun.yaml`](./testrun.yaml). Its main fields are:
@@ -70,7 +70,7 @@ Review [`testrun.yaml`](./testrun.yaml). Its main fields are:
 Apply the `TestRun`:
 
 ```bash
-kubectl apply -f 7.operator/testrun.yaml
+kubectl apply -f 6.operator/testrun.yaml
 ```
 
 In a second terminal, watch the resources created by the operator:
@@ -118,13 +118,13 @@ If you add the `iterations` values from both summaries, you should get approxima
 Delete the completed `TestRun` before reusing its name. Otherwise its completed Jobs can collide with the next run:
 
 ```bash
-kubectl delete -f 7.operator/testrun.yaml --ignore-not-found
+kubectl delete -f 6.operator/testrun.yaml --ignore-not-found
 ```
 
 Change `parallelism` in [`testrun.yaml`](./testrun.yaml) from `2` to `1`, apply it again, and watch the resources:
 
 ```bash
-kubectl apply -f 7.operator/testrun.yaml
+kubectl apply -f 6.operator/testrun.yaml
 kubectl get testruns,jobs,pods --watch
 ```
 
@@ -138,7 +138,7 @@ A completed `TestRun` is not restarted by `kubectl apply`. Delete the TestRun be
 
 ```bash
 kubectl delete testrun quickpizza-test --ignore-not-found
-kubectl apply -f 7.operator/testrun.yaml
+kubectl apply -f 6.operator/testrun.yaml
 ```
 
 ## Clean up
@@ -148,7 +148,7 @@ Remove only the lab workloads and operator, while keeping the kind cluster:
 ```bash
 kubectl delete testrun quickpizza-test --ignore-not-found 2>/dev/null || true
 kubectl delete configmap quickpizza-test --ignore-not-found
-kubectl delete -f 7.operator/quickpizza.yaml --ignore-not-found
+kubectl delete -f 6.operator/quickpizza.yaml --ignore-not-found
 kubectl delete -f https://raw.githubusercontent.com/grafana/k6-operator/v1.7.0/bundle.yaml \
   --ignore-not-found
 ```
@@ -168,4 +168,4 @@ kind delete cluster --name k6-workshop
 
 ---
 
-[← Previous exercise](../6.infrastructure-testing/) · [Workshop homepage](https://github.com/grafana/opensouthcode-2026-k6-workshop)
+[← Previous exercise](../5.infrastructure-testing/) · [Workshop homepage](https://github.com/grafana/opensouthcode-2026-k6-workshop)
