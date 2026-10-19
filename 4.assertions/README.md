@@ -91,4 +91,4 @@ If you have extra time, update the latency threshold until the test passes.
 
 ---
 
-[← Previous exercise](../3.workload-in-rps/) · [Workshop homepage](https://github.com/grafana/opensouthcode-2026-k6-workshop) · [Next exercise →](../5.infrastructure-testing/)
+[← Previous exercise](../3.workload-in-rps/) · [Workshop homepage](https://github.com/immavalls/cnd-norway-2026-k6-workshop) · [Next exercise →](../5.infrastructure-testing/)

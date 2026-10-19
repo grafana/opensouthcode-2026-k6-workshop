@@ -168,4 +168,4 @@ kind delete cluster --name k6-workshop
 
 ---
 
-[← Previous exercise](../5.infrastructure-testing/) · [Workshop homepage](https://github.com/grafana/opensouthcode-2026-k6-workshop)
+[← Previous exercise](../5.infrastructure-testing/) · [Workshop homepage](https://github.com/immavalls/cnd-norway-2026-k6-workshop)

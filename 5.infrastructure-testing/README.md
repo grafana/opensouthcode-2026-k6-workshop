@@ -70,4 +70,4 @@ Finally, edit any panel to explore the underlying k6 and `pg_stat_statements` me
 
 ---
 
-[← Previous exercise](../4.assertions/) · [Workshop homepage](https://github.com/grafana/opensouthcode-2026-k6-workshop) · [Next exercise →](../6.operator/)
+[← Previous exercise](../4.assertions/) · [Workshop homepage](https://github.com/immavalls/cnd-norway-2026-k6-workshop) · [Next exercise →](../6.operator/)

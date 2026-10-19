@@ -16,8 +16,8 @@ _**Need help?** Raise your hand and we'll come help._
 Clone the repo and start QuickPizza on your local machine:
 
 ```bash
-git clone git@github.com:grafana/opensouthcode-2026-k6-workshop.git
-cd opensouthcode-2026-k6-workshop
+git clone git@github.com:immavalls/cnd-norway-2026-k6-workshop.git
+cd cnd-norway-2026-k6-workshop
 docker compose up -d
 ```
 
@@ -25,8 +25,8 @@ The output should be similar to:
 
 ```bash
 [+] up 10/10
-✔ Network opensouthcode-2026-k6-workshop_default Created 0.0s 
-✔ Volume opensouthcode-2026-k6-workshop_postgres_data Created 0.0s 
+✔ Network cnd-norway-2026-k6-workshop_default Created 0.0s 
+✔ Volume cnd-norway-2026-k6-workshop_postgres_data Created 0.0s 
 ✔ Container pyroscope Started 0.3s 
 ✔ Container grafana Started 0.3s 
 ✔ Container loki Started 0.3s 
@@ -92,4 +92,4 @@ The following diagram shows the Docker Compose architecture used in this worksho
 
 ---
 
-[Workshop homepage](https://github.com/grafana/opensouthcode-2026-k6-workshop) · [Next exercise →](../2.basic-load-test/)
+[Workshop homepage](https://github.com/immavalls/cnd-norway-2026-k6-workshop) · [Next exercise →](../2.basic-load-test/)
