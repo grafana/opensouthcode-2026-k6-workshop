@@ -4,15 +4,14 @@
 
 ## Hands-on lab flow
 
-1. Introduction
-2. [Lab setup](./1.lab-setup/)
-3. [First load test](./2.basic-load-test/)
-4. [Workload in request rate](./3.workload-in-rps/)
-5. [Assertions](./4.assertions/)
-6. [Infrastructure testing](./5.infrastructure-testing/)
-7. [Distributed load testing with the k6 Operator](./6.operator/)
-8. k6 Ecosystem Overview
-9. Lab wrap-up / Closing
+- Introduction: introduction to reliability testing and k6
+- [Lab 1 - Setup](./1.lab-setup/): set up your environment for the labs
+- [Lab 2 - Basic load test](./2.basic-load-test/): run a simple k6 test
+- [Lab 3 - Workload in rps](./3.workload-in-rps/): choosing the right model for your test
+- [Lab 4 - Assertions and CI/CD](./4.assertions/): set pass/fail criteria for your tests
+- [Lab 5 - Infrastructure load test](./5.infrastructure-testing/): load test a DB and correlate your infrastructure tests
+- [Lab 6 - Scale with the k6 Operator](./6.operator/): move to a distributed test on Kubernetes
+- k6 AI and wrap-up: demo, take-home exercises and Q&A
 
 ## Additional exercises (take-away)
 
