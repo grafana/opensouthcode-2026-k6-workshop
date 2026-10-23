@@ -10,4 +10,4 @@ providers:
     updateIntervalSeconds: 10
     editable: true
     options:
-      path: /etc/grafana/provisioning/dashboards/definitions
+      path: /otel-lgtm/grafana/conf/provisioning/dashboards/definitions
