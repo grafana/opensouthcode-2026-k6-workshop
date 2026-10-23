@@ -1,11 +1,11 @@
 services:
   alloy:
-    image: grafana/alloy:v1.16.2
+    image: docker.io/grafana/alloy:v1.21.1
     container_name: alloy
     labels:
       - "service.type=instrumentation"
     volumes:
-      - "./compose/config.alloy:/config.alloy:Z"
+      - "./compose/config.alloy:/config.alloy:z"
     command:
       - run
       - /config.alloy
@@ -13,14 +13,12 @@ services:
       - --stability.level=public-preview
     ports:
       - "12345:12345"
-      - "4317:4317" # OTLP gRPC
-      - "4318:4318" # OTLP HTTP
     environment:
       QUICKPIZZA_HOST: quickpizza:3333
-      METRICS_ENDPOINT: http://prometheus:9090/api/v1/write
-      TRACES_ENDPOINT: http://tempo:4317
-      LOGS_ENDPOINT: http://loki:3100/loki/api/v1/push
-      PROFILES_ENDPOINT: http://pyroscope:4040
+      METRICS_ENDPOINT: http://otel-lgtm:9090/api/v1/write
+      TRACES_ENDPOINT: http://otel-lgtm:4317
+      LOGS_ENDPOINT: http://otel-lgtm:3100/loki/api/v1/push
+      PROFILES_ENDPOINT: http://otel-lgtm:4040
       DEPLOYMENT_ENVIRONMENT: development
       # Default uses the same DB connection as the Quickpizza service. Use empty string to disable.
       DB_O11Y_CONNECTION: "postgres://postgres:postgres@quickpizza-db:5432/quickpizza_db?sslmode=disable"
@@ -28,10 +26,7 @@ services:
       DB_SERVICE_NAME: "quickpizza-db"
     depends_on:
       - quickpizza
-      - prometheus
-      - tempo
-      - loki
-      - pyroscope
+      - otel-lgtm
   quickpizza:
     image: ghcr.io/grafana/quickpizza-local:0.15.27
     container_name: quickpizza
@@ -58,7 +53,7 @@ services:
         condition: service_healthy
 
   quickpizza-db:
-    image: postgres:18.1
+    image: docker.io/library/postgres:18.1
     container_name: quickpizza-db
     labels:
       - "service.type=database"
@@ -77,69 +72,27 @@ services:
       - "pg_stat_statements.track=all"
     volumes:
       - postgres_data:/var/lib/postgresql
-      - ./compose/postgres-init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./compose/postgres-init.sql:/docker-entrypoint-initdb.d/init.sql:ro,Z
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
       timeout: 5s
       retries: 5
 
-  loki:
-    image: grafana/loki:3.4.3
-    container_name: loki
-    labels:
-      - "service.type=instrumentation"
-    ports:
-      - "3100:3100"
-
-  prometheus:
-    image: prom/prometheus:v3.9.1
-    container_name: prometheus
-    labels:
-      - "service.type=instrumentation"
-    volumes:
-      - ./compose/prometheus.yaml:/etc/prometheus.yaml
-    command:
-      - --web.enable-remote-write-receiver
-      - --enable-feature=exemplar-storage
-      - --config.file=/etc/prometheus.yaml
-    ports:
-      - "9090:9090"
-
-  pyroscope:
-    image: grafana/pyroscope:1.16.0
-    container_name: pyroscope
-    labels:
-      - "service.type=instrumentation"
-    ports:
-      - "4040:4040"
-
-  tempo:
-    image: grafana/tempo:2.9.0
-    container_name: tempo
-    labels:
-      - "service.type=instrumentation"
-    command: ["-config.file=/etc/tempo.yaml"]
-    volumes:
-      - ./compose/tempo.yaml:/etc/tempo.yaml
-    ports:
-      - "3200:3200"
-    depends_on:
-      - prometheus
-
-  grafana:
-    image: grafana/grafana:13.0.2
-    container_name: grafana
-    labels:
-      - "service.type=instrumentation"
+  otel-lgtm:
+    image: docker.io/grafana/otel-lgtm:0.37.0  # caution: image >800MB
+    container_name: otel-lgtm
     ports:
       - "3000:3000"
-    environment:
-      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
-      - GF_AUTH_ANONYMOUS_ENABLED=true
-      - GF_AUTH_BASIC_ENABLED=false
+      - "9090:9090"
+      - "4317:4317"
     volumes:
-      - ./compose/grafana:/etc/grafana/provisioning/
+      # Add Postgres alongside the image's bundled grafana-datasources.yaml.
+      # Mounting the whole provisioning directory would hide the embedded datasources.
+      - ./compose/grafana/datasources/datasource.yaml:/otel-lgtm/grafana/conf/provisioning/datasources/postgres.yaml:ro,z
+      # Add workshop dashboards without hiding the image's bundled providers.
+      - ./compose/grafana/dashboards/dashboards.yaml:/otel-lgtm/grafana/conf/provisioning/dashboards/workshop.yaml:ro,z
+      - ./compose/grafana/dashboards/definitions:/otel-lgtm/grafana/conf/provisioning/dashboards/definitions:ro,z
 
   k6:
     image: grafana/k6:2.1.0
@@ -150,7 +103,7 @@ services:
     environment:
       BASE_URL: http://quickpizza:3333
     volumes:
-      - ".:/scripts:Z"
+      - ".:/scripts:z"
     working_dir: /scripts
     depends_on:
       - quickpizza

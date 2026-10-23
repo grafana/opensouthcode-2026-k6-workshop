@@ -26,7 +26,7 @@ QuickPizza now returns occasional errors and slower responses.
 To make the code fault-tolerant, wrap up the `console.log` statement as follows:
 
 ```js
-if (res === 200) {
+if (res.status=== 200) {
     console.log(
       `${res.json().pizza.name} (${res.json().pizza.ingredients.length} ingredients)`,
     );

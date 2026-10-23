@@ -47,6 +47,8 @@ Finally, explore these common performance metrics:
 - **Request duration** (latency)
 - **Request failed** (errors)
 
+Once you've finished the test, and reviewed the dashboard, close your browser tab. The k6 process waits to exit as long as there’s at least one open browser window for the dashboard extension.
+
 ## Related Resources
 
 - [k6 Documentation: Get started](https://grafana.com/docs/k6/latest/get-started/)
