@@ -12,6 +12,8 @@ The system under test does not technically need to run in Kubernetes. But in thi
 
 Run all commands from the repository root.
 
+> **Windows (PowerShell) users:** the multi-line commands below use `\` to continue a line. In PowerShell, either put the command on one line or end each line with a backtick (`` ` ``) instead. In the clean-up commands, drop `2>/dev/null || true`.
+
 If the workshop Docker Compose stack is still running and your laptop has limited memory, stop it before starting kind:
 
 ```bash
@@ -105,7 +107,7 @@ kubectl logs job/quickpizza-test-1
 kubectl logs job/quickpizza-test-2
 ```
 
-In the sumamries:
+In the summaries:
 
 - Both runners should show successful iterations and a 100% `status is 200` check.
 - The script configures a total arrival rate of 4 iterations per second for 15 seconds. 
@@ -132,7 +134,7 @@ This run creates one runner Job, while the test still targets approximately 4 it
 
 ## Troubleshooting
 
-**If you re-apply the TestRun onto the cluster, it does not not start a new test**
+**If you re-apply the TestRun onto the cluster, it does not start a new test**
 
 A completed `TestRun` is not restarted by `kubectl apply`. Delete the TestRun before applying it again:
 

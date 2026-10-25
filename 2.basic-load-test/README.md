@@ -23,7 +23,7 @@ In practice, traffic usually ramps up over time. You can model this behavior usi
 
 <img src="./images/ramping-load-test.png" alt="Workload with ramping pattern" width="400" />
 
-A common recommendation is to spend between between 5% to 10% of the total duration to ramp up and ramp down the load.
+A common recommendation is to spend between 5% to 10% of the total duration to ramp up and ramp down the load.
 
 Now, update the previous `k6-test.js` test:
 
@@ -36,6 +36,8 @@ When your `k6-test.js` is ready, run it with the `--out` option.
 ```bash
 k6 run --out web-dashboard k6-test.js
 ```
+
+> Running k6 with Docker? Use `docker compose exec k6 k6 run --out web-dashboard k6-test.js`. See [how to run k6](../1.lab-setup/#choose-how-to-run-k6).
 
 The `--out web-dashboard` option displays metrics in a simple web dashboard so you can watch test results in real time. Visit [http://127.0.0.1:5665/ui/](http://127.0.0.1:5665/ui/).
 
@@ -54,6 +56,8 @@ Once you've finished the test, and reviewed the dashboard, close your browser ta
 - [k6 Documentation: Get started](https://grafana.com/docs/k6/latest/get-started/)
 - [k6 Documentation: Load test types](https://grafana.com/docs/k6/latest/testing-guides/test-types/)
 - [k6 Documentation: Web dashboard](https://grafana.com/docs/k6/latest/results-output/web-dashboard/)
+
+If you get stuck, compare with the [solution](./answer/k6-test.js).
 
 ---
 

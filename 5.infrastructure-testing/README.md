@@ -2,7 +2,7 @@
 
 In this exercise, you'll learn how to:
 - Write a load test against a database
-- Send k6 results and PosgreSQL statistics to Prometheus and visualize performance in Grafana
+- Send k6 results and PostgreSQL statistics to Prometheus and visualize performance in Grafana
 
 The following architecture diagram shows the data flows used in this exercise within the Docker Compose setup.
 
@@ -21,11 +21,33 @@ The `setup()` function prepares the test data and runs before the scenarios star
 
 The `teardown()` function runs after the test completes and returns the database to its initial state.
 
-Run the test with the `--out experimental-prometheus-rw` option to send k6 results to Prometheus.
+Run the test with the `--out experimental-prometheus-rw` option to send k6 results to Prometheus. Run it from the repository root.
+
+If you use Docker, the `k6` container is already configured to reach Prometheus and PostgreSQL:
+
+```bash
+docker compose exec k6 k6 run --out experimental-prometheus-rw 5.infrastructure-testing/sql-db-k6-test.js
+```
+
+If you use the k6 binary, first tell k6 where Prometheus is listening:
+
+```bash
+# Linux and macOS
+export K6_PROMETHEUS_RW_SERVER_URL=http://localhost:9090/api/v1/write
+```
+
+```powershell
+# Windows (PowerShell)
+$env:K6_PROMETHEUS_RW_SERVER_URL="http://localhost:9090/api/v1/write"
+```
+
+Then run the test:
 
 ```bash
 k6 run --out experimental-prometheus-rw 5.infrastructure-testing/sql-db-k6-test.js
 ```
+
+> The test uses the `k6/x/sql` extension. k6 v1.2 or later downloads it automatically the first time you run the test, so the first run needs internet access and may take a moment to start.
 
 This demo includes a standard **[k6 Prometheus Dashboard](http://localhost:3000/d/k6-prometheus/k6-prometheus)**, which displays primarily  HTTP request data.  
 

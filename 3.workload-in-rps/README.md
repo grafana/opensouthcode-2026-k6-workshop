@@ -40,6 +40,8 @@ When your `k6-test.js` is ready, run it with the `--out` option.
 k6 run --out web-dashboard k6-test.js
 ```
 
+> Running k6 with Docker? Use `docker compose exec k6 k6 run --out web-dashboard k6-test.js`. See [how to run k6](../1.lab-setup/#choose-how-to-run-k6).
+
 You can verify the generated workload in the terminal output:
 
 ```bash
@@ -62,6 +64,8 @@ On the **default ✓** row, `30.00 iters/s` indicates the iteration rate configu
 🔍 If so, review the test scenario and find what could cause requests to execute at a slower pace.
 
 After fixing it, run the test again.
+
+If you get stuck, compare with the [solution](./answer/k6-test.js).
 
 ## Related Resources
 

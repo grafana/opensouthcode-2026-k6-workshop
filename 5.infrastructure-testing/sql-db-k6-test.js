@@ -10,7 +10,9 @@ import driver from "k6/x/sql/driver/postgres";
 import { check } from "k6";
 import { randomIntBetween } from "https://jslib.k6.io/k6-utils/1.2.0/index.js";
 
-const db = sql.open(driver, "postgres://postgres:postgres@localhost:5432/quickpizza_db?sslmode=disable");
+const DB_HOST = __ENV.DB_HOST || "localhost";
+
+const db = sql.open(driver, `postgres://postgres:postgres@${DB_HOST}:5432/quickpizza_db?sslmode=disable`);
 
 export const options = {
   scenarios: {

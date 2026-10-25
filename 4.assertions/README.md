@@ -11,7 +11,7 @@ One approach is to gradually increase load until the system starts failing. For 
 Uncomment the following lines in [compose.yaml](../compose.yaml):
 
 ```yml
-      # QUICKPIZZA_DELAY_RECOMMENDATIONS: 1000
+      # QUICKPIZZA_DELAY_RECOMMENDATIONS: "1s"
       # QUICKPIZZA_FAIL_RATE_RECOMMENDATIONS_API_PIZZA_POST: 5
 ```
 
@@ -42,6 +42,8 @@ Run the test when ready.
 ```bash
 k6 run --out web-dashboard k6-test.js
 ```
+
+> Running k6 with Docker? Use `docker compose exec k6 k6 run --out web-dashboard k6-test.js`. See [how to run k6](../1.lab-setup/#choose-how-to-run-k6).
 
 Verify the output in the terminal:
 
@@ -80,6 +82,8 @@ ERRO[0011] thresholds on metrics 'http_req_duration' have been crossed
 
 
 If you have extra time, update the latency threshold until the test passes.
+
+If you get stuck, compare with the [solution](./answer/k6-test.js).
 
 
 

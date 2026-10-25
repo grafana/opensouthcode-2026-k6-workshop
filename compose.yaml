@@ -100,13 +100,20 @@ services:
     entrypoint: ["tail", "-f", "/dev/null"]
     labels:
       - "service.type=load-generator"
+    ports:
+      - "5665:5665" # k6 web dashboard
     environment:
       BASE_URL: http://quickpizza:3333
+      DB_HOST: quickpizza-db
+      K6_WEB_DASHBOARD_HOST: 0.0.0.0
+      K6_PROMETHEUS_RW_SERVER_URL: http://otel-lgtm:9090/api/v1/write
     volumes:
       - ".:/scripts:z"
     working_dir: /scripts
     depends_on:
       - quickpizza
+      - quickpizza-db
+      - otel-lgtm
 
 
 volumes:
